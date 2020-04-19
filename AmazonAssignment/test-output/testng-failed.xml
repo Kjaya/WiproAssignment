@@ -5,13 +5,13 @@
   <parameter name="Browser" value="Android"/>
   <test name="amazonProductCheckout(failed)">
     <classes>
-      <class name="test.ProductCheckout">
+      <class name="com.amazon.test.ProductCheckout">
         <methods>
-          <include name="teardown"/>
           <include name="searchTest"/>
           <include name="setup"/>
+          <include name="teardown"/>
         </methods>
-      </class> <!-- test.ProductCheckout -->
+      </class> <!-- com.amazon.test.ProductCheckout -->
     </classes>
   </test> <!-- amazonProductCheckout(failed) -->
 </suite> <!-- Failed suite [Gmail Suite] -->

@@ -5,7 +5,7 @@
 	<parameter name="deviceName" value="Honor 6X" />
 	<test name="amazonProductCheckout">
 		<classes>
-			<class name="test.ProductCheckout" />
+			<class name="com.amazon.test.ProductCheckout" />
 		</classes>
 	</test>
 </suite>
