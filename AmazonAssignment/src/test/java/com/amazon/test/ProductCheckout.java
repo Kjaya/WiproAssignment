@@ -62,6 +62,7 @@ public class ProductCheckout extends BaseClass {
 		ProductSearchPage searchPage = new ProductSearchPage();
 		searchPage.searchTV();
 		waitForElementPresence(ratings);
+		searchPage.validateFilterOptions();
 
 		// Rotate the screen from default portrait to landscape
 		rotateScreen(ScreenOrientation.LANDSCAPE);

@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.Assert;
 
 import com.amazon.common.PropertyUtility;
 import com.amazon.test.ProductCheckout;
@@ -30,6 +31,13 @@ public class ProductSearchPage extends BaseClass{
 	PropertyUtility putility = new PropertyUtility(PROPERTY_FILE_PATH);
 	private static final Logger LOGGER = Logger.getLogger(ProductCheckout.class.getName());
 	By search = putility.getObject("search");
+	By filter = putility.getObject("filter");
+	By opt_Filter = putility.getObject("opt_Filter");
+	By opt_Catogries = putility.getObject("opt_Catogries");
+	By opt_Sort = putility.getObject("opt_Sort");
+	By opt_Television = putility.getObject("opt_Television");
+	By opt_TelevisionSize = putility.getObject("opt_TelevisionSize");
+	
 	MobileElement element;
 	
 	/* Method to perform Search operation */
@@ -47,8 +55,19 @@ public class ProductSearchPage extends BaseClass{
 		return element;
 	}
 	
+	/* Method to get the product title */
 	public String getProductText() {
 		return getText(element);
-		
+	}
+	
+	/* Method to validate filter options */
+	public void validateFilterOptions() {
+		clickElement(filter);
+		waitForElementPresence(opt_Filter);
+		Assert.assertTrue(isElementDisplayed(opt_Catogries));
+		Assert.assertTrue(isElementDisplayed(opt_Sort));
+		Assert.assertTrue(isElementDisplayed(opt_Television));
+		Assert.assertTrue(isElementDisplayed(opt_TelevisionSize));
+		clickElement(filter);
 	}
 }

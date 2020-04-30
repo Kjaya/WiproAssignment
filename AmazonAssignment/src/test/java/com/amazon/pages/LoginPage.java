@@ -2,11 +2,13 @@ package com.amazon.pages;
 
 import static com.amazon.common.Constants.APP_PROPERTIES_FILE_PATH;
 import static com.amazon.common.Constants.PROPERTY_FILE_PATH;
+import static org.junit.Assert.assertTrue;
 
 import java.util.logging.Logger;
 
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import com.amazon.common.PropertyUtility;
 import com.amazon.test.ProductCheckout;
@@ -31,6 +33,9 @@ public class LoginPage extends BaseClass{
 	By logincontinue = putility.getObject("logincontinue");
 	By password = putility.getObject("password");
 	By login = putility.getObject("login");
+	By welcomeText = putility.getObject("welcomeText");
+	By createAccount = putility.getObject("createAccount");
+	By invalidUsernameError = putility.getObject("invalidUsernameError");
 	PropertyUtility commonProp = new PropertyUtility(APP_PROPERTIES_FILE_PATH);
 
 	/* Method to perform login to amazon app */
@@ -39,12 +44,10 @@ public class LoginPage extends BaseClass{
 		clickElement(SiginButton);
 
 		waitForElementPresence(emailormobile);
+		validatePageElements();
 		Assert.assertTrue(isElementDisplayed(emailormobile));
-		setValue(emailormobile, commonProp.getProperty("username"));
-		LOGGER.info("username is set");
-
-		waitForElementPresence(logincontinue);
-		clickElement(logincontinue);
+		validateInvalidUser();
+		validateValidUserLoginSuccess();
 
 		waitForElementPresence(password);
 		setValue(password, commonProp.getProperty("password"));
@@ -52,5 +55,33 @@ public class LoginPage extends BaseClass{
 		waitForElementPresence(login);
 		clickElement(login);
 		LOGGER.info("Logged in successfully");
+	}
+	
+	/* Method to validate page elements */
+	public void validatePageElements() {
+		waitForElementPresence(emailormobile);
+		Assert.assertTrue(isElementDisplayed(welcomeText));
+		Assert.assertTrue(isElementDisplayed(createAccount));
+		Assert.assertTrue(isElementDisplayed(logincontinue));
+	}
+	
+	/* Method to validate error for invalid user */
+	public void validateInvalidUser() {
+		waitForElementPresence(emailormobile);
+		setValue(emailormobile, commonProp.getProperty("invalidUsername"));
+		LOGGER.info("Invalid username is set");
+		waitForElementPresence(logincontinue);
+		clickElement(logincontinue);
+		waitForElementPresence(invalidUsernameError);
+		Assert.assertTrue(isElementDisplayed(invalidUsernameError));
+	}
+	
+	/* Method to validate login success */
+	public void validateValidUserLoginSuccess(){
+		setValue(emailormobile, commonProp.getProperty("username"));
+		LOGGER.info("Valid username is set");
+
+		waitForElementPresence(logincontinue);
+		clickElement(logincontinue);
 	}
 }
