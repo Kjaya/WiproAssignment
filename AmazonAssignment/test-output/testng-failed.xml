@@ -3,6 +3,9 @@
 <suite thread-count="1" guice-stage="DEVELOPMENT" name="Failed suite [Gmail Suite]">
   <parameter name="deviceName" value="Honor 6X"/>
   <parameter name="Browser" value="Android"/>
+  <listeners>
+    <listener class-name="com.amazon.common.Listeners"/>
+  </listeners>
   <test name="amazonProductCheckout(failed)">
     <classes>
       <class name="com.amazon.test.ProductCheckout">

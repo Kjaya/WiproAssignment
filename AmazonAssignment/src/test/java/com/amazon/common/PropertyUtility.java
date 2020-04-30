@@ -11,9 +11,8 @@ import org.openqa.selenium.By;
  * @author Karthika
  * 
  * History :
- * 2020-Apr-18 Karthika : Property file containing methods to read values from property file
- * 2020-Apr-30 Karthika : Review comments incorporated
- *
+ * 2020-Apr-29 Karthika : Property file containing methods to read values from property file
+ *  
  */
 
 public class PropertyUtility {

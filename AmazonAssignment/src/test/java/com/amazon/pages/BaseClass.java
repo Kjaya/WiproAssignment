@@ -3,13 +3,17 @@ package com.amazon.pages;
 import static com.amazon.common.Constants.APP_PROPERTIES_FILE_PATH;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.logging.Logger;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -31,8 +35,8 @@ import io.appium.java_client.android.AndroidDriver;
  * 
  * @author Karthika
  * 
- *         History : 
- *         2020-Apr-17 Karthika : Added before suite method to invokethe driver with desired capablities 
+ *         History : 2020-Apr-17 Karthika : Added before suite method to
+ *         invokethe driver with desired capablities 
  *         2020-Apr-18 Karthika : Added few methods to handle common actions
  *         2020-Apr-30 Karthika : Review comments incorporated
  * 
@@ -153,6 +157,16 @@ public class BaseClass {
 	/* Method to test the app in landscape mode */
 	protected void rotateScreen(ScreenOrientation orientation) {
 		((AppiumDriver) driver).rotate(orientation);
+	}
+
+	protected void takeScreenshot() {
+		TakesScreenshot scrShot = (TakesScreenshot) driver;
+		File srcFile = scrShot.getScreenshotAs(OutputType.FILE);
+		try {
+			FileUtils.copyFile(srcFile, new File("failureScreenshot.jpg"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/* Methd to quit the driver after the test executed */
