@@ -7,9 +7,9 @@
     <classes>
       <class name="com.amazon.test.ProductCheckout">
         <methods>
-          <include name="searchTest"/>
           <include name="setup"/>
           <include name="teardown"/>
+          <include name="testProductCheckout"/>
         </methods>
       </class> <!-- com.amazon.test.ProductCheckout -->
     </classes>

@@ -2,6 +2,7 @@ package com.amazon.pages;
 
 import static com.amazon.common.Constants.APP_PROPERTIES_FILE_PATH;
 
+import java.io.File;
 import java.net.URL;
 import java.util.logging.Logger;
 
@@ -30,18 +31,25 @@ import io.appium.java_client.android.AndroidDriver;
  * 
  * @author Karthika
  * 
- *         History : 2020-Apr-17 Karthika : Added before suite method to invoke
- *         the driver with desired capablities 2020-Apr-18 Karthika : Added few
- *         methods to handle common actions
+ *         History : 
+ *         2020-Apr-17 Karthika : Added before suite method to invokethe driver with desired capablities 
+ *         2020-Apr-18 Karthika : Added few methods to handle common actions
+ *         2020-Apr-30 Karthika : Review comments incorporated
  * 
  */
 
 public class BaseClass {
-	public WebDriver driver;
+	public static WebDriver driver;
 	private static final Logger LOGGER = Logger.getLogger(BaseClass.class.getName());
 	// to load all the common properties
 	PropertyUtility prop = new PropertyUtility(APP_PROPERTIES_FILE_PATH);
 
+	/*
+	 * Returns all the capabilities that can be used as prerequisites and Invoke the
+	 * driver based on the (@Param Browser)
+	 * 
+	 * @param Browser- an appropriate platform should be provided
+	 */
 	@BeforeSuite
 	@Parameters("Browser")
 	public void setup(String Browser) throws InterruptedException {
@@ -49,10 +57,8 @@ public class BaseClass {
 			try {
 				// to push the apk for the first time when the apk is not installed in the
 				// device
-				/*
-				 * File apkDir = new File("C:\\Users\\dk\\Downloads"); File apk = new
-				 * File(apkDir, "Amazon_shopping.apk");
-				 */
+				File apkDir = new File("C:\\Users\\dk\\Downloads");
+				File apk = new File(apkDir, "Amazon_shopping.apk");
 
 				DesiredCapabilities capabilities = new DesiredCapabilities();
 				capabilities.setCapability("platformName", prop.getProperty("platformName"));
@@ -60,7 +66,7 @@ public class BaseClass {
 				capabilities.setCapability("deviceName", prop.getProperty("deviceName"));
 				capabilities.setCapability("platformVersion", prop.getProperty("platformVersion"));
 				// Enable below line only for the first time apk is pushed
-				// capabilities.setCapability("app", apk.getAbsolutePath());
+				capabilities.setCapability("app", apk.getAbsolutePath());
 
 				capabilities.setCapability("appPackage", prop.getProperty("appPackage"));
 				capabilities.setCapability("appActivity", prop.getProperty("appActivity"));
@@ -73,12 +79,20 @@ public class BaseClass {
 		}
 	}
 
-	/* Method to get the text based on the element */
+	/*
+	 * Method to get the text based on the element
+	 * 
+	 * @param element - the mobile element in which need to capture text of it
+	 */
 	public String getText(MobileElement element) {
 		return element.getText().trim();
 	}
 
-	/* Method to click the element based on locator */
+	/*
+	 * Method to click the element based on locator
+	 * 
+	 * @param selector - By element to pass the locator
+	 */
 	public void clickElement(By selector) {
 		try {
 			driver.findElement(selector).click();
@@ -92,7 +106,13 @@ public class BaseClass {
 		}
 	}
 
-	/* Method to set the value in the text box based on locator */
+	/*
+	 * Method to set the value in the text box based on locator
+	 * 
+	 * @param selector - By element to pass the locator
+	 * 
+	 * @param val - value to type in Mobile element
+	 */
 	public void setValue(By selector, String val) {
 		try {
 			MobileElement ele = (MobileElement) driver.findElement(selector);
@@ -111,24 +131,33 @@ public class BaseClass {
 		}
 	}
 
-	/* Method to check element displayed */
+	/*
+	 * Method to check element displayed
+	 * 
+	 * @param selector - By element to pass the locator
+	 */
 	protected boolean isElementDisplayed(By selector) {
 		return driver.findElement(selector).isDisplayed();
 	}
 
-	/* Method to check element presence using explicit wait condition */
+	/*
+	 * Method to check element presence using explicit wait condition
+	 * 
+	 * @param selector - By element to pass the locator
+	 */
 	protected void waitForElementPresence(By selector) {
 		WebDriverWait wait = new WebDriverWait(driver, 2000);
 		wait.until(ExpectedConditions.presenceOfElementLocated(selector));
 	}
 
-	protected void rotateScreen() {
-		((AppiumDriver) driver).rotate(ScreenOrientation.LANDSCAPE);
+	/* Method to test the app in landscape mode */
+	protected void rotateScreen(ScreenOrientation orientation) {
+		((AppiumDriver) driver).rotate(orientation);
 	}
 
 	/* Methd to quit the driver after the test executed */
 	@AfterSuite
 	public void teardown() {
-		// driver.quit();
+		driver.quit();
 	}
 }

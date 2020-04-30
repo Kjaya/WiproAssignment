@@ -2,12 +2,12 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Gmail Suite" duration-ms="175366" started-at="2020-04-19T11:21:28Z" finished-at="2020-04-19T11:24:23Z">
+  <suite name="Gmail Suite" duration-ms="167656" started-at="2020-04-30T05:42:21Z" finished-at="2020-04-30T05:45:09Z">
     <groups>
     </groups>
-    <test name="amazonProductCheckout" duration-ms="175366" started-at="2020-04-19T11:21:28Z" finished-at="2020-04-19T11:24:23Z">
+    <test name="amazonProductCheckout" duration-ms="167656" started-at="2020-04-30T05:42:21Z" finished-at="2020-04-30T05:45:09Z">
       <class name="com.amazon.test.ProductCheckout">
-        <test-method status="PASS" signature="setup(java.lang.String)[pri:0, instance:com.amazon.test.ProductCheckout@31ef45e3]" name="setup" is-config="true" duration-ms="17085" started-at="2020-04-19T16:51:11Z" finished-at="2020-04-19T16:51:28Z">
+        <test-method status="PASS" signature="setup(java.lang.String)[pri:0, instance:com.amazon.test.ProductCheckout@3c0ecd4b]" name="setup" is-config="true" duration-ms="30609" started-at="2020-04-30T11:11:51Z" finished-at="2020-04-30T11:12:21Z">
           <params>
             <param index="0">
               <value>
@@ -18,11 +18,11 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method status="PASS" signature="searchTest()[pri:0, instance:com.amazon.test.ProductCheckout@31ef45e3]" name="searchTest" duration-ms="175341" started-at="2020-04-19T16:51:28Z" finished-at="2020-04-19T16:54:23Z">
+        <test-method status="PASS" signature="testProductCheckout()[pri:0, instance:com.amazon.test.ProductCheckout@3c0ecd4b]" name="testProductCheckout" duration-ms="167630" started-at="2020-04-30T11:12:21Z" finished-at="2020-04-30T11:15:09Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- searchTest -->
-        <test-method status="PASS" signature="teardown()[pri:0, instance:com.amazon.test.ProductCheckout@31ef45e3]" name="teardown" is-config="true" duration-ms="1" started-at="2020-04-19T16:54:23Z" finished-at="2020-04-19T16:54:23Z">
+        </test-method> <!-- testProductCheckout -->
+        <test-method status="PASS" signature="teardown()[pri:0, instance:com.amazon.test.ProductCheckout@3c0ecd4b]" name="teardown" is-config="true" duration-ms="3129" started-at="2020-04-30T11:15:09Z" finished-at="2020-04-30T11:15:12Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->

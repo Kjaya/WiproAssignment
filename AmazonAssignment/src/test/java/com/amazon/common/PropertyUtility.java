@@ -12,12 +12,17 @@ import org.openqa.selenium.By;
  * 
  * History :
  * 2020-Apr-18 Karthika : Property file containing methods to read values from property file
- *  
+ * 2020-Apr-30 Karthika : Review comments incorporated
+ *
  */
 
 public class PropertyUtility {
 	
 	Properties prop = new Properties();	
+	
+	/* Method to load the property file from specified location
+	 * @param fileName - property file name is passed
+	 */
 	public PropertyUtility(String fileName)
 	{
 		try{
@@ -30,12 +35,18 @@ public class PropertyUtility {
 		}
 	}
 	
+	/* Method to get the property values based on propertyKey
+	 * @param propertyKey - to get the property value 
+	 */
 	public String getProperty(String propertyKey){
 		String propertyValue;
 		propertyValue=prop.getProperty(propertyKey);
 		return propertyValue;
 	}
 	
+	/* Method to get the By element based on types of locators 
+	 * @param name - Locator type
+	 */
 	public By getObject(String name)
 	{
 		By ret = null;
